@@ -1,6 +1,8 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaFax, FaNotesMedical, FaCheckCircle, FaComments } from 'react-icons/fa';
 import { useState } from 'react';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface Tool {
   name: string;
@@ -231,11 +233,19 @@ const toolCategories: ToolCategory[] = [
   }
 ];
 
-const Tools = () => {
+const Tools = memo(() => {
   const [hoveredTool, setHoveredTool] = useState<string | null>(null);
+  const { elementRef, isVisible } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
 
   return (
-    <section id="tools" className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-coral-50/5 to-white">
+    <section
+      ref={elementRef}
+      id="tools"
+      className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-coral-50/5 to-white"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -257,7 +267,12 @@ const Tools = () => {
         <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -412,9 +427,11 @@ const Tools = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
-};
+});
+
+Tools.displayName = 'Tools';
 
 export default Tools;

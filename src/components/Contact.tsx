@@ -1,71 +1,61 @@
+import { memo, useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useRef } from 'react';
 import { FaLinkedin, FaInstagram, FaEnvelope, FaCopy, FaCheck } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../config/emailjs';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-const Contact = () => {
-  const form = useRef<HTMLFormElement>(null);
+const Contact = memo(() => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isCopied, setIsCopied] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
-  const [error, setError] = useState('');
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
+    setSubmitStatus('idle');
 
     try {
-      if (form.current) {
-        const templateParams = {
-          from_name: formData.name,
-          reply_to: formData.email,
-          message: formData.message,
-          to_name: 'Quezelle',  // Your name
-          user_name: formData.name,  // Sender's name
-          user_email: formData.email,  // Sender's email
-        };
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        message: formData.message,
+        to_name: 'Quezelle',  // Your name
+        user_name: formData.name,  // Sender's name
+        user_email: formData.email,  // Sender's email
+      };
 
-        console.log('Sending email with params:', templateParams);
-        
-        const result = await emailjs.send(
-          emailConfig.serviceId,
-          emailConfig.templateId,
-          templateParams,
-          emailConfig.publicKey
-        );
-        
-        console.log('Email sent successfully:', result);
-        setIsSuccess(true);
-        setFormData({ name: '', email: '', message: '' });
-      }
-    } catch (err) {
-      console.error('Failed to send email:', err);
-      setError('Failed to send message. Please try again.');
+      await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        templateParams,
+        emailConfig.publicKey
+      );
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Failed to send email:', error);
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => {
-        setIsSuccess(false);
-        setError('');
-      }, 3000);
     }
-  };
+  }, [formData]);
 
-  const handleCopyEmail = async () => {
+  const handleCopyEmail = useCallback(async () => {
     const email = 'Quezelle.torres@outlook.com';
     try {
       await navigator.clipboard.writeText(email);
@@ -74,10 +64,14 @@ const Contact = () => {
     } catch (err) {
       console.error('Failed to copy email:', err);
     }
-  };
+  }, []);
 
   return (
-    <section id="contact" className="min-h-screen bg-gradient-to-b from-gray-900 to-black relative flex items-center py-20">
+    <section
+      ref={elementRef}
+      id="contact"
+      className="min-h-screen bg-gradient-to-b from-gray-900 to-black relative flex items-center py-20"
+    >
       {/* Animated gradient background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0 bg-gradient-to-r from-coral-500/20 to-purple-500/20 animate-gradient-xy"></div>
@@ -89,8 +83,8 @@ const Contact = () => {
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             className="text-center mb-16"
           >
             <h2 className="text-5xl font-bold bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text inline-block mb-4 font-display">
@@ -105,8 +99,8 @@ const Contact = () => {
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
               className="space-y-8"
             >
               <div className="relative">
@@ -188,14 +182,14 @@ const Contact = () => {
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
               className="relative"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-coral-500 to-purple-500 rounded-lg blur opacity-25"></div>
               <div className="relative bg-gray-900 rounded-lg p-8 border border-gray-800">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text mb-6">Let's Talk</h3>
-                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
                     <input
@@ -249,14 +243,14 @@ const Contact = () => {
                   
                   {/* Success/Error Messages */}
                   <AnimatePresence mode="wait">
-                    {(isSuccess || error) && (
+                    {(submitStatus === 'success' || submitStatus === 'error') && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className={`text-center p-3 rounded-lg ${isSuccess ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}
+                        className={`text-center p-3 rounded-lg ${submitStatus === 'success' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}
                       >
-                        {isSuccess ? 'Message sent successfully!' : error}
+                        {submitStatus === 'success' ? 'Message sent successfully!' : 'Failed to send message. Please try again.'}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -268,6 +262,8 @@ const Contact = () => {
       </div>
     </section>
   );
-};
+});
+
+Contact.displayName = 'Contact';
 
 export default Contact;

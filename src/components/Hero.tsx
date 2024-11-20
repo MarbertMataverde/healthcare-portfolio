@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import ScrollAnimation from './ScrollAnimation';
+import OptimizedImage from './OptimizedImage';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -192,7 +193,7 @@ const Hero = memo(() => {
                 animate="animate"
                 className="relative"
               >
-                <img
+                <OptimizedImage
                   src="/hero-image.jpg"
                   alt="Quezelle Torres"
                   width={600}
