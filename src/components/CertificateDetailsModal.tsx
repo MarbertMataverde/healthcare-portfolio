@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
-import { FiAward, FiCalendar, FiBookOpen, FiCheck, FiMaximize2, FiMinimize2 } from 'react-icons/fi';
+import { FiCalendar, FiBookOpen, FiCheck, FiMaximize2, FiMinimize2 } from 'react-icons/fi';
 import { useState } from 'react';
 
 interface Certificate {
