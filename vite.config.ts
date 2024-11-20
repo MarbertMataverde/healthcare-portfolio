@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    target: 'esnext',
     minify: 'terser',
     cssMinify: true,
     rollupOptions: {
@@ -21,7 +20,11 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true
+      },
+      format: {
+        comments: false
       }
-    }
+    },
+    chunkSizeWarningLimit: 1000
   }
 })
