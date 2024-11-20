@@ -24,16 +24,16 @@ export default {
           }
         },
         coral: {
-          50: '#fff5f2',
-          100: '#ffe6e0',
-          200: '#ffd1c7',
-          300: '#ffb3a3',
-          400: '#ff8670',
-          500: '#FF8873',
-          600: '#FF7559',
-          700: '#cc2e0e',
-          800: '#a82915',
-          900: '#8a2817',
+          50: '#fff1f1',
+          100: '#ffe1e1',
+          200: '#ffc7c7',
+          300: '#ffa3a3',
+          400: '#ff7171',
+          500: '#ff4747',
+          600: '#ff1f1f',
+          700: '#e60000',
+          800: '#b30000',
+          900: '#910000',
         }
       },
       backgroundImage: {
@@ -42,4 +42,10 @@ export default {
     },
   },
   plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  experimental: {
+    optimizeUniversalDefaults: true
+  }
 }

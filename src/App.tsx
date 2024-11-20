@@ -1,23 +1,25 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Experience from './components/Experience'
-import Services from './components/Services'
-import Tools from './components/Tools';
-import Contact from './components/Contact';
 import ScrollProgress from './components/ScrollProgress'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import LoadingScreen from './components/LoadingScreen';
+
+// Lazy load components that aren't immediately visible
+const About = lazy(() => import('./components/About'));
+const Experience = lazy(() => import('./components/Experience'));
+const Services = lazy(() => import('./components/Services'));
+const Tools = lazy(() => import('./components/Tools'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
+    // Reduced initial loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 2 seconds loading time
+    }, 1000); // Reduced to 1 second
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,7 +35,7 @@ function App() {
           {/* Global Background Color */}
           <div className="fixed inset-0 bg-white/50" />
 
-          {/* Global Animated Gradient Circles */}
+          {/* Optimized Animated Gradient Circles */}
           <div className="fixed inset-0 pointer-events-none overflow-hidden">
             <motion.div
               animate={{
@@ -45,9 +47,10 @@ function App() {
               transition={{
                 duration: 20,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "linear",
+                repeatType: "reverse"
               }}
-              className="absolute top-[-20%] right-[-10%] w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-coral-200/40 to-coral-300/40 blur-3xl"
+              className="absolute top-[-20%] right-[-10%] w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-coral-200/40 to-coral-300/40 blur-3xl will-change-transform"
             />
             
             <motion.div
@@ -60,9 +63,10 @@ function App() {
               transition={{
                 duration: 25,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "linear",
+                repeatType: "reverse"
               }}
-              className="absolute bottom-[-20%] left-[-10%] w-[48rem] h-[48rem] rounded-full bg-gradient-to-br from-coral-100/30 to-coral-200/30 blur-3xl"
+              className="absolute bottom-[-20%] left-[-10%] w-[48rem] h-[48rem] rounded-full bg-gradient-to-br from-coral-100/30 to-coral-200/30 blur-3xl will-change-transform"
             />
             
             <motion.div
@@ -75,24 +79,24 @@ function App() {
               transition={{
                 duration: 22,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "linear",
+                repeatType: "reverse"
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[36rem] h-[36rem] rounded-full bg-gradient-to-br from-coral-50/30 to-coral-100/30 blur-3xl"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[36rem] h-[36rem] rounded-full bg-gradient-to-br from-coral-50/30 to-coral-100/30 blur-3xl will-change-transform"
             />
           </div>
 
-          {/* Content */}
-          <div className="relative">
+          <main className="relative">
             <Navbar />
-            <main>
-              <Hero />
+            <Hero />
+            <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
               <About />
               <Experience />
               <Services />
               <Tools />
               <Contact />
-            </main>
-          </div>
+            </Suspense>
+          </main>
         </div>
       )}
     </AnimatePresence>
