@@ -121,6 +121,9 @@ const Navbar = () => {
             className={`md:hidden p-2 rounded-lg transition-colors ${
               isScrolled ? 'text-gray-800' : 'text-white'
             }`}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
               isScrolled ? 'bg-gray-800' : 'bg-white'
@@ -135,9 +138,14 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden rounded-b-2xl`}>
+        <div 
+          id="mobile-menu"
+          className={`md:hidden transition-all duration-300 ${
+            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          } overflow-hidden rounded-b-2xl`}
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
           <div className="py-2 space-y-1">
             {navItems.map((item) => (
               <motion.a

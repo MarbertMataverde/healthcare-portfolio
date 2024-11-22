@@ -28,10 +28,6 @@ const OptimizedImage = memo(({
     const img = new Image();
     img.src = src;
     
-    if (priority) {
-      img.fetchPriority = 'high';
-    }
-
     img.onload = () => {
       setIsLoaded(true);
       setError(false);
