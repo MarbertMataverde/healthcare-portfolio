@@ -95,10 +95,10 @@ const Navbar = () => {
                 }}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors relative ${
                   activeSection === item.href.substring(1)
-                    ? 'text-coral-500'
+                    ? 'text-coral-400'
                     : isScrolled
-                    ? 'text-gray-700 hover:text-coral-500'
-                    : 'text-white hover:text-coral-300'
+                    ? 'text-gray-900 hover:text-coral-600'
+                    : 'text-white hover:text-coral-200'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -119,20 +119,20 @@ const Navbar = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? 'text-gray-800' : 'text-white'
+              isScrolled ? 'text-gray-900' : 'text-white'
             }`}
             aria-label="Toggle navigation menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
           >
             <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-800' : 'bg-white'
+              isScrolled ? 'bg-gray-900' : 'bg-white'
             } ${isMobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''}`} />
             <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-800' : 'bg-white'
+              isScrolled ? 'bg-gray-900' : 'bg-white'
             } ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
             <div className={`w-6 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-800' : 'bg-white'
+              isScrolled ? 'bg-gray-900' : 'bg-white'
             } ${isMobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
@@ -157,10 +157,10 @@ const Navbar = () => {
                 }}
                 className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                   activeSection === item.href.substring(1)
-                    ? 'text-coral-500 bg-coral-50/50'
+                    ? 'text-coral-400 bg-coral-50/50'
                     : isScrolled
-                    ? 'text-gray-700 hover:text-coral-500 hover:bg-gray-50/50'
-                    : 'text-white hover:text-coral-300 hover:bg-white/10'
+                    ? 'text-gray-900 hover:text-coral-600 hover:bg-gray-50/50'
+                    : 'text-white hover:text-coral-200 hover:bg-white/10'
                 }`}
                 whileHover={{ x: 4 }}
               >

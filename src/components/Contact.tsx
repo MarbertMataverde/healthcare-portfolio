@@ -90,7 +90,7 @@ const Contact = memo(() => {
             <h2 className="text-5xl font-bold bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text inline-block mb-4 font-display">
               Need a Virtual Healthcare Assistant?
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
               Remote EHR management and administrative support to keep your healthcare operations running smoothly.
             </p>
           </motion.div>
@@ -148,7 +148,7 @@ const Contact = memo(() => {
                   </div>
 
                   <div className="space-y-4">
-                    <p className="text-white/80 text-sm uppercase tracking-wider font-medium">Social Profiles</p>
+                    <p className="text-white/90 text-sm uppercase tracking-wider font-medium">Social Profiles</p>
                     <div className="flex items-center gap-4">
                       <motion.a
                         href="https://linkedin.com/in/quezelle-torres"
@@ -159,7 +159,7 @@ const Contact = memo(() => {
                         whileTap={{ scale: 0.98 }}
                       >
                         <FaLinkedin className="text-xl text-[#0A66C2] group-hover:text-[#0A66C2]" />
-                        <span className="text-sm text-gray-400 group-hover:text-white transition-colors">LinkedIn</span>
+                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">LinkedIn</span>
                       </motion.a>
                       
                       <motion.a
@@ -171,7 +171,7 @@ const Contact = memo(() => {
                         whileTap={{ scale: 0.98 }}
                       >
                         <FaInstagram className="text-xl text-[#E4405F] group-hover:text-[#E4405F]" />
-                        <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Instagram</span>
+                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">Instagram</span>
                       </motion.a>
                     </div>
                   </div>
@@ -191,7 +191,7 @@ const Contact = memo(() => {
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text mb-6">Let's Talk</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
                     <input
                       type="text"
                       id="name"
@@ -204,7 +204,7 @@ const Contact = memo(() => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                     <input
                       type="email"
                       id="email"

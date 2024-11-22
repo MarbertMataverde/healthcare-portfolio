@@ -84,10 +84,10 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 hover:text-gray-900 transition-colors duration-300 mb-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 transition-colors duration-300 mb-4">
             Professional Experience
           </h2>
-          <p className="text-lg text-gray-600/90 hover:text-gray-700 transition-colors duration-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-700 transition-colors duration-300 max-w-3xl mx-auto">
             A timeline of my healthcare administration journey
           </p>
         </motion.div>
@@ -110,10 +110,10 @@ const Experience = () => {
                       <div className="relative">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                           <div>
-                            <h3 className="text-xl md:text-2xl font-bold text-gray-800/90 mb-1 group-hover:text-gray-900 transition-colors duration-300">
+                            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 group-hover:text-gray-900 transition-colors duration-300">
                               {exp.title}
                             </h3>
-                            <p className="text-coral-500/90 font-medium group-hover:text-coral-500 transition-colors duration-300">
+                            <p className="text-coral-600 font-medium group-hover:text-coral-700 transition-colors duration-300">
                               {exp.duration}
                             </p>
                           </div>
@@ -122,7 +122,7 @@ const Experience = () => {
                           {exp.responsibilities.map((resp, respIndex) => (
                             <li
                               key={respIndex}
-                              className="flex items-start text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300"
+                              className="flex items-start text-gray-700 group-hover:text-gray-800 transition-colors duration-300"
                             >
                               <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-coral-500/80 group-hover:bg-coral-500 transition-colors duration-300"></span>
                               {resp}
