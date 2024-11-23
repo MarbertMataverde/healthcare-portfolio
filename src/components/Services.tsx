@@ -105,34 +105,19 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-coral-50/10 to-white">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="services-pattern" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-              <path d="M16 0 L32 16 L16 32 L0 16 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#services-pattern)" />
-        </svg>
-      </div>
-
-      {/* Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-[25%] -right-[25%] w-[50%] h-[50%] rounded-full bg-coral-500/10 mix-blend-multiply blur-[120px] animate-blob"></div>
-        <div className="absolute -bottom-[25%] -left-[25%] w-[50%] h-[50%] rounded-full bg-purple-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
-      </div>
-      
+    <section
+      id="services"
+      className="relative min-h-screen py-20 flex items-center"
+    >
+      {/* Content Container */}
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <motion.div 

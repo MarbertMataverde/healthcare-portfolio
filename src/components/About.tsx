@@ -7,26 +7,10 @@ const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-coral-50/30 to-white">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.015]">
-        <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="about-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="1" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#about-grid)" />
-        </svg>
-      </div>
-
-      {/* Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-[25%] -right-[25%] w-[50%] h-[50%] rounded-full bg-coral-500/10 mix-blend-multiply blur-[120px] animate-blob"></div>
-        <div className="absolute -bottom-[25%] -left-[25%] w-[50%] h-[50%] rounded-full bg-purple-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
-      </div>
-
+    <section
+      id="about"
+      className="relative min-h-screen py-20 flex items-center"
+    >
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">

@@ -242,188 +242,189 @@ const Tools = memo(() => {
 
   return (
     <section
-      ref={elementRef}
       id="tools"
-      className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-coral-50/5 to-white"
+      ref={elementRef}
+      className="relative min-h-screen py-20 flex items-center"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="tools-pattern" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-              <circle cx="24" cy="24" r="1" fill="currentColor" />
-              <circle cx="0" cy="48" r="1" fill="currentColor" />
-              <circle cx="48" cy="0" r="1" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#tools-pattern)" />
-        </svg>
-      </div>
-
-      {/* Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-[25%] -right-[25%] w-[50%] h-[50%] rounded-full bg-coral-500/10 mix-blend-multiply blur-[120px] animate-blob"></div>
-        <div className="absolute -bottom-[25%] -left-[25%] w-[50%] h-[50%] rounded-full bg-purple-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
-      </div>
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4"
+        className="relative z-10 w-full"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 hover:text-gray-900 transition-colors duration-300 mb-3">
-              Tools That I Use
-            </h2>
-            <p className="text-lg text-gray-600/90 hover:text-gray-700 transition-colors duration-300 max-w-2xl mx-auto">
-              Leveraging modern healthcare tools for efficient patient care
-            </p>
-          </motion.div>
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 hover:text-gray-900 transition-colors duration-300 mb-3">
+                Tools That I Use
+              </h2>
+              <p className="text-lg text-gray-600/90 hover:text-gray-700 transition-colors duration-300 max-w-2xl mx-auto">
+                Leveraging modern healthcare tools for efficient patient care
+              </p>
+            </motion.div>
 
-          <div className="flex flex-col items-center">
-            {/* First Row - 3 cards */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
-              {toolCategories.slice(0, 3).map((category, index) => (
-                <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`group relative flex ${
-                    index === 2 ? 'sm:col-span-2 lg:col-span-1 sm:max-w-lg sm:mx-auto lg:max-w-none lg:mx-0' : ''
-                  }`}
-                >
-                  <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
-                    <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                    
-                    <div className="p-5">
-                      <div className="flex items-center space-x-3 mb-4">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className={`w-10 h-10 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center text-white shadow-sm`}
-                        >
-                          {category.icon}
-                        </motion.div>
-                        <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
-                          {category.title}
-                        </h3>
-                      </div>
-
-                      <div className="space-y-2">
-                        {category.tools.map((tool) => (
+            <div className="flex flex-col items-center">
+              {/* First Row - 3 cards */}
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
+                {toolCategories.slice(0, 3).map((category, index) => (
+                  <motion.div
+                    key={category.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`group relative flex ${
+                      index === 2 ? 'sm:col-span-2 lg:col-span-1 sm:max-w-lg sm:mx-auto lg:max-w-none lg:mx-0' : ''
+                    }`}
+                  >
+                    <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
+                      <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                      
+                      <div className="p-5">
+                        <div className="flex items-center space-x-3 mb-4">
                           <motion.div
-                            key={tool.name}
-                            onHoverStart={() => setHoveredTool(tool.name)}
-                            onHoverEnd={() => setHoveredTool(null)}
-                            className="relative"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg relative overflow-hidden group-hover:shadow-xl transition-all duration-300`}
                           >
-                            <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
-                              <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
-                              <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                {tool.name}
-                              </span>
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-black/10 via-transparent to-transparent" />
+                            <div className="relative text-lg transform group-hover:-translate-y-0.5 transition-transform duration-300">
+                              {category.icon}
                             </div>
-
-                            {hoveredTool === tool.name && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
-                              >
-                                <div className="relative">
-                                  <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
-                                  <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                    {tool.description}
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
                           </motion.div>
-                        ))}
+                          <div className="flex-1">
+                            <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
+                              {category.title}
+                            </h3>
+                            <p className="text-sm text-gray-500/90 group-hover:text-gray-600 transition-colors duration-300">
+                              {category.tools.length} tools
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          {category.tools.map((tool) => (
+                            <motion.div
+                              key={tool.name}
+                              onHoverStart={() => setHoveredTool(tool.name)}
+                              onHoverEnd={() => setHoveredTool(null)}
+                              className="relative"
+                            >
+                              <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
+                                <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
+                                <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
+                                  {tool.name}
+                                </span>
+                              </div>
+
+                              {hoveredTool === tool.name && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: 4, scale: 0.95 }}
+                                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                                  exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
+                                >
+                                  <div className="relative">
+                                    <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
+                                    <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
+                                      {tool.description}
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
 
-            {/* Second Row - 2 cards */}
-            <div className="w-full sm:max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-              {toolCategories.slice(3).map((category, index) => (
-                <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
-                  className="group relative flex"
-                >
-                  <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
-                    <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                    
-                    <div className="p-5">
-                      <div className="flex items-center space-x-3 mb-4">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className={`w-10 h-10 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center text-white shadow-sm`}
-                        >
-                          {category.icon}
-                        </motion.div>
-                        <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
-                          {category.title}
-                        </h3>
-                      </div>
-
-                      <div className="space-y-2">
-                        {category.tools.map((tool) => (
+              {/* Second Row - 2 cards */}
+              <div className="w-full sm:max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                {toolCategories.slice(3).map((category, index) => (
+                  <motion.div
+                    key={category.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
+                    className="group relative flex"
+                  >
+                    <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
+                      <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                      
+                      <div className="p-5">
+                        <div className="flex items-center space-x-3 mb-4">
                           <motion.div
-                            key={tool.name}
-                            onHoverStart={() => setHoveredTool(tool.name)}
-                            onHoverEnd={() => setHoveredTool(null)}
-                            className="relative"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg relative overflow-hidden group-hover:shadow-xl transition-all duration-300`}
                           >
-                            <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
-                              <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
-                              <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                {tool.name}
-                              </span>
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-black/10 via-transparent to-transparent" />
+                            <div className="relative text-lg transform group-hover:-translate-y-0.5 transition-transform duration-300">
+                              {category.icon}
                             </div>
-
-                            {hoveredTool === tool.name && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
-                              >
-                                <div className="relative">
-                                  <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
-                                  <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                    {tool.description}
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
                           </motion.div>
-                        ))}
+                          <div className="flex-1">
+                            <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
+                              {category.title}
+                            </h3>
+                            <p className="text-sm text-gray-500/90 group-hover:text-gray-600 transition-colors duration-300">
+                              {category.tools.length} tools
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          {category.tools.map((tool) => (
+                            <motion.div
+                              key={tool.name}
+                              onHoverStart={() => setHoveredTool(tool.name)}
+                              onHoverEnd={() => setHoveredTool(null)}
+                              className="relative"
+                            >
+                              <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
+                                <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
+                                <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
+                                  {tool.name}
+                                </span>
+                              </div>
+
+                              {hoveredTool === tool.name && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: 4, scale: 0.95 }}
+                                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                                  exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
+                                >
+                                  <div className="relative">
+                                    <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
+                                    <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
+                                      {tool.description}
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

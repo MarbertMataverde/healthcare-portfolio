@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { motion, AnimatePresence } from 'framer-motion'
 import { lazy, Suspense, useEffect } from 'react';
 import { usePerformanceMonitoring } from './utils/performance';
+import Background from './components/Background';
 
 // Lazy load components that aren't immediately visible
 const About = lazy(() => import('./components/About'));
@@ -117,7 +118,10 @@ function App() {
         </div>
 
         <main className="relative">
-          <Navbar />
+          <div className="relative">
+            <Background />
+            <Navbar />
+          </div>
           <Hero />
           <Suspense>
             <About />

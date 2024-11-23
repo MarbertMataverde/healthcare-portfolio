@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
-const navItems = [
+const navigation = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
   { name: 'Services', href: '#services' },
   { name: 'Tools', href: '#tools' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
@@ -61,8 +61,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 mx-auto w-[95%] max-w-7xl ${
       isScrolled 
-        ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]' 
-        : 'bg-white/50 backdrop-blur-sm'
+        ? 'bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]' 
+        : 'bg-white'
     } rounded-2xl`}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
@@ -82,7 +82,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
+            {navigation.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
@@ -137,7 +137,7 @@ const Navbar = () => {
             } bg-white rounded-xl shadow-lg overflow-hidden`}
           >
             <div className="py-2 px-4">
-              {navItems.map((item) => (
+              {navigation.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}

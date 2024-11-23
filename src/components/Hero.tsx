@@ -3,16 +3,6 @@ import { motion } from 'framer-motion';
 import ScrollAnimation from './ScrollAnimation';
 import OptimizedImage from './OptimizedImage';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      duration: 0.3
-    }
-  }
-};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -45,45 +35,12 @@ GradientText.displayName = 'GradientText';
 
 const Hero = memo(() => {
   return (
-    <motion.section
+    <section
       id="home"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
+      className="relative min-h-screen py-20 flex items-center"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute -top-[25%] -right-[25%] w-[50%] h-[50%] rounded-full bg-coral-500/10 mix-blend-multiply blur-[120px] animate-blob"></div>
-        <div className="absolute -bottom-[25%] -left-[25%] w-[50%] h-[50%] rounded-full bg-purple-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
-      </div>
-
-      {/* Floating particles - Only show on larger screens */}
-      <div className="absolute inset-0 overflow-hidden hidden sm:block">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-coral-500/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
       {/* Content Container */}
-      <div className="container mx-auto max-w-7xl relative z-10 w-full">
+      <div className="relative z-10 container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div variants={itemVariants} className="text-center lg:text-left relative order-2 lg:order-1">
@@ -135,7 +92,7 @@ const Hero = memo(() => {
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-coral-500/0 via-white/25 to-coral-500/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
                   <span className="relative flex items-center text-sm sm:text-base">
-                    Hire Me
+                    Let's Work Together
                     <svg 
                       className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transform transition-transform duration-200 group-hover:translate-x-1" 
                       fill="none" 
@@ -211,7 +168,7 @@ const Hero = memo(() => {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 });
 
