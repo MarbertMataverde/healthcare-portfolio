@@ -43,7 +43,7 @@ function App() {
 
   return (
     <AnimatePresence mode="wait">
-      <div className="min-h-screen w-full relative scroll-smooth bg-white">
+      <div className="min-h-screen w-full relative scroll-smooth bg-white overflow-x-hidden">
         <ScrollProgress />
         <ScrollToTop />
         

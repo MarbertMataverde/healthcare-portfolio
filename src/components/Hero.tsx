@@ -50,10 +50,10 @@ const Hero = memo(() => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="relative min-h-[100svh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 overflow-hidden bg-gray-950"
+      className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-950 overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0">
         <div className="absolute -top-[25%] -right-[25%] w-[50%] h-[50%] rounded-full bg-coral-500/10 mix-blend-multiply blur-[120px] animate-blob"></div>
         <div className="absolute -bottom-[25%] -left-[25%] w-[50%] h-[50%] rounded-full bg-purple-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-2000"></div>
         <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full bg-blue-500/10 mix-blend-multiply blur-[120px] animate-blob animation-delay-4000"></div>
@@ -83,8 +83,8 @@ const Hero = memo(() => {
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div variants={itemVariants} className="text-center lg:text-left relative order-2 lg:order-1">
             <motion.div 
@@ -97,7 +97,7 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.2}>
               <motion.h2 
                 variants={itemVariants}
-                className="text-xs sm:text-sm uppercase tracking-[0.2em] text-coral-500 mb-3 sm:mb-4 font-medium"
+                className="text-xs sm:text-sm uppercase tracking-[0.2em] text-coral-500 mb-2 sm:mb-3 font-medium"
               >
                 Healthcare Specialist
               </motion.h2>
@@ -106,7 +106,7 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.4}>
               <motion.h1 
                 variants={itemVariants}
-                className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 sm:mb-6"
+                className="text-4xl md:text-5xl font-serif font-bold text-white mb-3 sm:mb-4"
               >
                 Hi, I'm <GradientText>Quezelle Torres</GradientText>
               </motion.h1>
@@ -115,7 +115,7 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.6}>
               <motion.p 
                 variants={itemVariants}
-                className="text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8"
+                className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-4 sm:mb-6"
               >
                 Dedicated healthcare specialist with expertise in delivering quality patient care, supporting healthcare operations, and ensuring optimal outcomes for patients and organizations.
               </motion.p>
@@ -124,11 +124,11 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.8}>
               <motion.div 
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start"
               >
                 <motion.a
                   href="#contact"
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-coral-500/25 hover:text-white/90"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-coral-500/25 hover:text-white/90"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -148,7 +148,7 @@ const Hero = memo(() => {
 
                 <motion.a
                   href="#about"
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden rounded-xl bg-white/10 text-white font-medium border border-white/20 transition-all duration-300 hover:bg-white/20"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-white/10 text-white font-medium border border-white/20 transition-all duration-300 hover:bg-white/20"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
