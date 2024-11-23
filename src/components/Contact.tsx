@@ -137,14 +137,47 @@ const Contact = memo(() => {
     >
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Dynamic gradient spheres */}
+        {/* Dynamic gradient spheres - optimized for mobile */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] animate-sphere-float">
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,theme(colors.purple.100/10%),theme(colors.coral.100/10%),theme(colors.purple.100/10%))] rounded-full blur-3xl"></div>
-          </div>
-          <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] animate-sphere-float-delayed">
-            <div className="absolute inset-0 bg-[conic-gradient(from_180deg,theme(colors.coral.100/10%),theme(colors.purple.100/10%),theme(colors.coral.100/10%))] rounded-full blur-3xl"></div>
-          </div>
+          <motion.div
+            className="absolute top-[20%] left-[30%] w-96 h-96 rounded-full bg-gradient-to-br from-coral-500/5 to-purple-500/5 blur-3xl"
+            initial={false}
+            animate={{
+              x: [0, 20, 0],
+              y: [0, -20, 0]
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
+              repeatType: "reverse"
+            }}
+            style={{
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
+          />
+
+          <motion.div
+            className="absolute bottom-[20%] right-[30%] w-96 h-96 rounded-full bg-gradient-to-br from-purple-500/5 to-blue-500/5 blur-3xl"
+            initial={false}
+            animate={{
+              x: [0, -20, 0],
+              y: [0, 20, 0]
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 25,
+              ease: "linear",
+              repeatType: "reverse"
+            }}
+            style={{
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
+          />
         </div>
 
         {/* Modern geometric patterns */}
