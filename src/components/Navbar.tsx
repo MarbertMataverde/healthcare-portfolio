@@ -62,7 +62,7 @@ const Navbar = () => {
     <nav className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 mx-auto w-[95%] max-w-7xl ${
       isScrolled 
         ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]' 
-        : 'bg-transparent'
+        : 'bg-white/50 backdrop-blur-sm'
     } rounded-2xl`}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
@@ -92,10 +92,8 @@ const Navbar = () => {
                 }}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors relative ${
                   activeSection === item.href.substring(1)
-                    ? 'text-coral-400'
-                    : isScrolled
-                    ? 'text-gray-900 hover:text-coral-600'
-                    : 'text-white hover:text-coral-200'
+                    ? 'text-coral-500'
+                    : 'text-gray-700 hover:text-coral-500'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -115,30 +113,28 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}
+            className="md:hidden p-2 rounded-lg transition-colors text-gray-700"
             aria-label="Toggle navigation menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
           >
-            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-900' : 'bg-white'
-            } ${isMobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''}`} />
-            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-900' : 'bg-white'
-            } ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-            <div className={`w-6 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-gray-900' : 'bg-white'
-            } ${isMobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''}`} />
+            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 bg-current ${
+              isMobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''
+            }`} />
+            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 bg-current ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`} />
+            <div className={`w-6 h-0.5 transition-all duration-300 bg-current ${
+              isMobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''
+            }`} />
           </button>
 
           {/* Mobile Menu */}
           <div 
             id="mobile-menu"
             className={`md:hidden absolute top-full left-0 right-0 mt-2 transition-all duration-300 ${
-              isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            } overflow-hidden bg-white/90 backdrop-blur-md rounded-2xl shadow-lg`}
+              isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+            } bg-white rounded-xl shadow-lg overflow-hidden`}
           >
             <div className="py-2 px-4">
               {navItems.map((item) => (
@@ -151,8 +147,8 @@ const Navbar = () => {
                   }}
                   className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                     activeSection === item.href.substring(1)
-                      ? 'text-coral-400'
-                      : 'text-gray-900 hover:text-coral-600'
+                      ? 'text-coral-500 bg-gray-50'
+                      : 'text-gray-700 hover:text-coral-500 hover:bg-gray-50'
                   }`}
                   whileHover={{ x: 4 }}
                 >

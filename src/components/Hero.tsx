@@ -50,7 +50,7 @@ const Hero = memo(() => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-950 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -106,7 +106,7 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.4}>
               <motion.h1 
                 variants={itemVariants}
-                className="text-4xl md:text-5xl font-serif font-bold text-white mb-3 sm:mb-4"
+                className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-3 sm:mb-4"
               >
                 Hi, I'm <GradientText>Quezelle Torres</GradientText>
               </motion.h1>
@@ -115,7 +115,7 @@ const Hero = memo(() => {
             <ScrollAnimation direction="up" delay={0.6}>
               <motion.p 
                 variants={itemVariants}
-                className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-4 sm:mb-6"
+                className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 mb-4 sm:mb-6"
               >
                 Dedicated healthcare specialist with expertise in delivering quality patient care, supporting healthcare operations, and ensuring optimal outcomes for patients and organizations.
               </motion.p>
@@ -128,13 +128,13 @@ const Hero = memo(() => {
               >
                 <motion.a
                   href="#contact"
-                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-2xl transition-transform duration-200 hover:scale-105 hover:shadow-coral-500/25 hover:text-white/90"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-lg transition-transform duration-200 hover:scale-105"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   style={{ willChange: 'transform' }}
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-coral-500/0 via-white/25 to-coral-500/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
-                  <span className="relative flex items-center group-hover:text-white text-sm sm:text-base">
+                  <span className="relative flex items-center text-sm sm:text-base">
                     Hire Me
                     <svg 
                       className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transform transition-transform duration-200 group-hover:translate-x-1" 
@@ -149,7 +149,7 @@ const Hero = memo(() => {
 
                 <motion.a
                   href="#about"
-                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-white/10 text-white font-medium border border-white/20 transition-all duration-300 hover:bg-white/20"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gray-50 text-gray-900 font-medium border border-gray-200 transition-all duration-300 hover:bg-gray-100"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -199,7 +199,7 @@ const Hero = memo(() => {
                   alt="Quezelle Torres"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-[2rem] sm:rounded-[3rem] shadow-2xl transform hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-auto rounded-[2rem] sm:rounded-[3rem] shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
                   loading="eager"
                 />
                 
