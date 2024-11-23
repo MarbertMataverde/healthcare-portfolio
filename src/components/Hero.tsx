@@ -8,8 +8,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      duration: 0.5
+      staggerChildren: 0.1,
+      duration: 0.3
     }
   }
 };
@@ -19,16 +19,16 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 }
+    transition: { duration: 0.3 }
   }
 };
 
 const floatingVariants = {
   initial: { y: 0 },
   animate: {
-    y: [-20, 0, -20],
+    y: [-10, 0, -10],
     transition: {
-      duration: 6,
+      duration: 4,
       repeat: Infinity,
       ease: "easeInOut"
     }
@@ -90,7 +90,7 @@ const Hero = memo(() => {
             <motion.div 
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="absolute -top-20 -left-20 w-64 h-64 bg-coral-500/10 rounded-full blur-3xl hidden lg:block"
             />
             
@@ -128,9 +128,10 @@ const Hero = memo(() => {
               >
                 <motion.a
                   href="#contact"
-                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-coral-500/25 hover:text-white/90"
+                  className="group relative inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 overflow-hidden rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-2xl transition-transform duration-200 hover:scale-105 hover:shadow-coral-500/25 hover:text-white/90"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  style={{ willChange: 'transform' }}
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-coral-500/0 via-white/25 to-coral-500/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
                   <span className="relative flex items-center group-hover:text-white text-sm sm:text-base">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const navItems = [
@@ -15,36 +15,33 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Handle scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
+    
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPosition = window.scrollY;
+
+    sections.forEach((section) => {
+      const sectionTop = (section as HTMLElement).offsetTop - 100;
+      const sectionId = section.getAttribute('id') || '';
       
-      // Get current section
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPosition = window.scrollY;
-
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop - 100;
-        const sectionId = section.getAttribute('id') || '';
-        
-        if (scrollPosition >= sectionTop) {
-          setActiveSection(sectionId);
-        }
-      });
-
-      if (scrollPosition < 50) {
-        setActiveSection('home');
+      if (scrollPosition >= sectionTop) {
+        setActiveSection(sectionId);
       }
-    };
+    });
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (scrollPosition < 50) {
+      setActiveSection('home');
+    }
   }, []);
 
-  // Handle click
-  const scrollToSection = (sectionId: string) => {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;
@@ -59,7 +56,7 @@ const Navbar = () => {
       });
     }
     setIsMobileMenuOpen(false);
-  };
+  }, []);
 
   return (
     <nav className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 mx-auto w-[95%] max-w-7xl ${
@@ -135,38 +132,34 @@ const Navbar = () => {
               isScrolled ? 'bg-gray-900' : 'bg-white'
             } ${isMobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''}`} />
           </button>
-        </div>
 
-        {/* Mobile Menu */}
-        <div 
-          id="mobile-menu"
-          className={`md:hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          } overflow-hidden rounded-b-2xl`}
-          role="navigation"
-          aria-label="Mobile navigation"
-        >
-          <div className="py-2 space-y-1">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href.substring(1));
-                }}
-                className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-coral-400 bg-coral-50/50'
-                    : isScrolled
-                    ? 'text-gray-900 hover:text-coral-600 hover:bg-gray-50/50'
-                    : 'text-white hover:text-coral-200 hover:bg-white/10'
-                }`}
-                whileHover={{ x: 4 }}
-              >
-                {item.name}
-              </motion.a>
-            ))}
+          {/* Mobile Menu */}
+          <div 
+            id="mobile-menu"
+            className={`md:hidden absolute top-full left-0 right-0 mt-2 transition-all duration-300 ${
+              isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            } overflow-hidden bg-white/90 backdrop-blur-md rounded-2xl shadow-lg`}
+          >
+            <div className="py-2 px-4">
+              {navItems.map((item) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.href.substring(1));
+                  }}
+                  className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    activeSection === item.href.substring(1)
+                      ? 'text-coral-400'
+                      : 'text-gray-900 hover:text-coral-600'
+                  }`}
+                  whileHover={{ x: 4 }}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
