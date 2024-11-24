@@ -36,7 +36,7 @@ function App() {
 
     // Use requestIdleCallback for better performance
     if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(preloadComponents);
+      (window as Window & { requestIdleCallback?: (callback: () => void) => void }).requestIdleCallback?.(preloadComponents);
     } else {
       setTimeout(preloadComponents, 1000);
     }
