@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+// Import CSS without module syntax
 import './index.css'
 import { ThemeProvider } from './context/ThemeContext'
 

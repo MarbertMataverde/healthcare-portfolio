@@ -18,13 +18,12 @@ export default defineConfig({
     },
     terserOptions: {
       compress: {
-        drop_console: true,
-        drop_debugger: true
-      },
-      format: {
-        comments: false
+        drop_console: true
       }
-    },
-    chunkSizeWarningLimit: 1000
+    }
+  },
+  css: {
+    // Prevent CSS from being treated as a module
+    modules: false
   }
 })
