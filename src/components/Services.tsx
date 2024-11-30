@@ -143,26 +143,34 @@ const Services = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <div 
-                    className="block bg-white/95 backdrop-blur-sm rounded-lg p-8 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden border border-gray-100/50"
+                    className="block bg-white rounded-lg p-8 transform transition-all duration-300 hover:scale-[1.01] shadow-sm hover:shadow-lg relative overflow-hidden border-2 border-theme-light-border"
                   >
                     <div className="flex items-start relative z-10">
                       <div className="flex items-baseline space-x-6">
-                        <span className="text-3xl font-serif text-coral-500/90 group-hover:text-coral-500 transition-colors duration-300">
+                        <span className="text-4xl font-serif text-theme-light-accent font-semibold group-hover:text-theme-light-accent-hover transition-colors duration-300">
                           {service.number}
                         </span>
                         <div>
-                          <h3 className="text-2xl font-serif text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300 mb-2">
+                          <h3 className="text-2xl font-serif font-bold text-theme-light-text group-hover:text-theme-light-accent transition-colors duration-300 mb-3">
                             {service.title}
                           </h3>
-                          <p className="text-gray-700/95 group-hover:text-gray-800 transition-colors duration-300 max-w-2xl">
+                          <p className="text-theme-light-text-secondary leading-relaxed mb-4 max-w-2xl">
                             {service.description}
                           </p>
+                          <ul className="space-y-2">
+                            {service.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-center text-theme-light-text-secondary">
+                                <span className="w-1.5 h-1.5 rounded-full bg-theme-light-accent/70 mr-2"></span>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
                     </div>
                     
                     {/* Hover Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-50/80 to-gray-100/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-theme-light-bg-secondary to-theme-light-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </motion.div>
               ))}

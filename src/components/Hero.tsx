@@ -152,7 +152,7 @@ const Hero = memo(() => {
                 className="relative"
               >
                 <OptimizedImage
-                  src="/hero-image.jpg"
+                  src="/hero-image.png"
                   alt="Quezelle Torres"
                   width={600}
                   height={600}
