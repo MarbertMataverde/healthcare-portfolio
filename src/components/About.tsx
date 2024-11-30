@@ -36,9 +36,9 @@ const About = () => {
               >
                 <div className="relative">
                   <img
-                    src="/about-image.jpg"
+                    src="optimized/about-me-image.webp"
                     alt="Quezelle Torres"
-                    className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl shadow-2xl"
+                    className="w-full h-[400px] md:h-[550px] lg:h-[650px] object-cover"
                   />
                 </div>
               </motion.div>

@@ -45,7 +45,7 @@ const CertificateDetailsModal = ({ isOpen, onClose, certificate }: CertificateDe
                   <FiMinimize2 className="w-6 h-6 text-white" />
                 </button>
                 <motion.img
-                  src="/hipaa-certificate.jpg"
+                  src="/optimized/hipaa-certificate.webp"
                   alt={certificate.title}
                   className="max-w-full max-h-[90vh] object-contain"
                   initial={{ scale: 0.9 }}
@@ -97,7 +97,7 @@ const CertificateDetailsModal = ({ isOpen, onClose, certificate }: CertificateDe
                       onClick={toggleFullScreen}
                     >
                       <img
-                        src="/hipaa-certificate.jpg"
+                        src="/optimized/hipaa-certificate.webp"
                         alt={certificate.title}
                         className="w-full h-full object-cover"
                       />
