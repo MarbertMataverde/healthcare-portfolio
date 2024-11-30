@@ -241,9 +241,9 @@ const Hero = memo(() => {
                 <OptimizedImage
                   src="/optimized/hero-image.webp"
                   alt="Quezelle Torres"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto relative z-10"
+                  width={1000}
+                  height={1000}
+                  className="w-full max-w-[900px] h-auto relative z-10 mx-auto"
                   loading="eager"
                 />
               </motion.div>
