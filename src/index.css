@@ -24,6 +24,8 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     background-color: #FFFFFF;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
 
   body {

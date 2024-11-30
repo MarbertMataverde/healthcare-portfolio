@@ -37,6 +37,7 @@ const ScrollToTop = () => {
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          aria-label="Scroll to top of page"
         >
           <FiArrowUp className="w-6 h-6" />
         </motion.button>
