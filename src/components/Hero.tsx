@@ -3,25 +3,12 @@ import { motion } from 'framer-motion';
 import ScrollAnimation from './ScrollAnimation';
 import OptimizedImage from './OptimizedImage';
 
-
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.3 }
-  }
-};
-
-const floatingVariants = {
-  initial: { y: 0 },
-  animate: {
-    y: [-10, 0, -10],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
   }
 };
 
@@ -37,20 +24,138 @@ const Hero = memo(() => {
   return (
     <section
       id="home"
-      className="relative min-h-screen py-20 flex items-center"
+      className="relative min-h-screen py-20 flex items-center overflow-hidden bg-gradient-to-br from-gray-50 to-white"
     >
+      {/* Modern Abstract Background */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Base gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-coral-50/30 via-purple-50/20 to-blue-50/30" />
+        
+        {/* Abstract elements container */}
+        <div className="absolute inset-0">
+          {/* Large gradient sphere */}
+          <div className="absolute right-0 top-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-purple-200/30 via-blue-200/25 to-coral-200/30 blur-[100px] transform -translate-x-1/4" />
+          
+          {/* Floating circles */}
+          <div className="absolute left-1/4 top-1/4 w-32 h-32 rounded-full bg-coral-200/20 blur-xl animate-float-slow" />
+          <div className="absolute right-1/3 bottom-1/4 w-24 h-24 rounded-full bg-blue-200/20 blur-lg animate-float-slower" />
+          <div className="absolute left-1/3 bottom-1/3 w-16 h-16 rounded-full bg-purple-200/20 blur-md animate-float" />
+
+          {/* Abstract flowing lines */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 1440 800"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            {/* Gradient definitions */}
+            <defs>
+              <linearGradient id="flow-gradient-1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.4" />
+              </linearGradient>
+              <linearGradient id="flow-gradient-2" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0.3" />
+              </linearGradient>
+              <linearGradient id="flow-gradient-3" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.25" />
+                <stop offset="50%" stopColor="#FF6B6B" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.25" />
+              </linearGradient>
+            </defs>
+
+            {/* Flowing line 1 - Coral to Purple to Blue */}
+            <path
+              d="M0 600Q360 550 720 600T1440 550"
+              stroke="url(#flow-gradient-1)"
+              strokeWidth="3"
+              fill="none"
+            >
+              <animate
+                attributeName="d"
+                dur="20s"
+                repeatCount="indefinite"
+                values="
+                  M0 600Q360 550 720 600T1440 550;
+                  M0 600Q360 600 720 550T1440 600;
+                  M0 600Q360 550 720 600T1440 550"
+              />
+            </path>
+
+            {/* Flowing line 2 - Purple to Blue to Coral */}
+            <path
+              d="M0 700Q360 650 720 700T1440 650"
+              stroke="url(#flow-gradient-2)"
+              strokeWidth="3"
+              fill="none"
+            >
+              <animate
+                attributeName="d"
+                dur="25s"
+                repeatCount="indefinite"
+                values="
+                  M0 700Q360 650 720 700T1440 650;
+                  M0 700Q360 700 720 650T1440 700;
+                  M0 700Q360 650 720 700T1440 650"
+              />
+            </path>
+
+            {/* Flowing line 3 - Blue to Coral to Purple */}
+            <path
+              d="M0 650Q360 600 720 650T1440 600"
+              stroke="url(#flow-gradient-3)"
+              strokeWidth="3"
+              fill="none"
+            >
+              <animate
+                attributeName="d"
+                dur="22s"
+                repeatCount="indefinite"
+                values="
+                  M0 650Q360 600 720 650T1440 600;
+                  M0 650Q360 650 720 600T1440 650;
+                  M0 650Q360 600 720 650T1440 600"
+              />
+            </path>
+
+            {/* Additional decorative elements */}
+            <circle cx="25%" cy="85%" r="4" fill="#FF6B6B" opacity="0.4">
+              <animate
+                attributeName="opacity"
+                values="0.4;0.2;0.4"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            <circle cx="75%" cy="90%" r="3" fill="#A78BFA" opacity="0.4">
+              <animate
+                attributeName="opacity"
+                values="0.4;0.2;0.4"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            <circle cx="40%" cy="95%" r="2" fill="#60A5FA" opacity="0.4">
+              <animate
+                attributeName="opacity"
+                values="0.4;0.2;0.4"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </circle>
+          </svg>
+        </div>
+      </div>
+
       {/* Content Container */}
       <div className="relative z-10 container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div variants={itemVariants} className="text-center lg:text-left relative order-2 lg:order-1">
-            <motion.div 
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="absolute -top-20 -left-20 w-64 h-64 bg-coral-500/10 rounded-full blur-3xl hidden lg:block"
-            />
-            
             <ScrollAnimation direction="up" delay={0.2}>
               <motion.h2 
                 variants={itemVariants}
@@ -129,40 +234,18 @@ const Hero = memo(() => {
           {/* Image */}
           <motion.div 
             variants={itemVariants}
-            className="relative order-1 lg:order-2 max-w-md mx-auto w-full hidden md:block"
+            className="relative order-1 lg:order-2"
           >
-            <motion.div 
-              className="absolute inset-0 bg-gradient-to-r from-coral-500 to-purple-500 rounded-[2rem] sm:rounded-[3rem] blur-2xl opacity-30"
-              animate={{
-                scale: [1, 1.05, 1],
-                opacity: [0.3, 0.4, 0.3]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
             <ScrollAnimation direction="left" delay={0.4}>
-              <motion.div
-                variants={floatingVariants}
-                initial="initial"
-                animate="animate"
-                className="relative"
-              >
+              <motion.div className="relative">
                 <OptimizedImage
-                  src="/hero-image.png"
+                  src="/optimized/hero-image.webp"
                   alt="Quezelle Torres"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-[2rem] sm:rounded-[3rem] shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-auto relative z-10"
                   loading="eager"
                 />
-                
-                {/* Decorative elements */}
-                <div className="absolute -right-4 sm:-right-8 top-1/4 w-12 sm:w-16 h-12 sm:h-16 bg-coral-500/20 rounded-full blur-xl" />
-                <div className="absolute -left-4 sm:-left-8 bottom-1/4 w-16 sm:w-20 h-16 sm:h-20 bg-purple-500/20 rounded-full blur-xl" />
               </motion.div>
             </ScrollAnimation>
           </motion.div>
