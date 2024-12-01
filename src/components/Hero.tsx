@@ -1,10 +1,16 @@
 import { memo } from 'react';
+import { motion } from 'framer-motion';
 import OptimizedImage from './OptimizedImage';
 
 const GradientText = memo(({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <span className={`bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text ${className}`}>
+  <motion.span
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+    className={`bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text ${className}`}
+  >
     {children}
-  </span>
+  </motion.span>
 ));
 
 GradientText.displayName = 'GradientText';
@@ -63,16 +69,36 @@ const Hero = memo(() => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="text-center lg:text-left order-2 lg:order-1">
-            <h2 className="text-sm uppercase tracking-[0.2em] text-coral-500 mb-3 font-medium">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-sm uppercase tracking-[0.2em] text-coral-500 mb-3 font-medium"
+            >
               Healthcare Specialist
-            </h2>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4"
+            >
               Hi, I'm <GradientText>Quezelle Torres</GradientText>
-            </h1>
-            <p className="text-lg text-gray-600 mb-6 max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-gray-600 mb-6 max-w-2xl lg:max-w-none mx-auto lg:mx-0"
+            >
               Dedicated healthcare specialist with expertise in delivering quality patient care, supporting healthcare operations, and ensuring optimal outcomes for patients and organizations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
+            >
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-coral-500 to-purple-500 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:translate-y-[-1px]"
@@ -95,19 +121,27 @@ const Hero = memo(() => {
                   </svg>
                 </span>
               </a>
-            </div>
+            </motion.div>
           </div>
 
           {/* Image */}
-          <div className="order-1 lg:order-2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="order-1 lg:order-2"
+          >
             <OptimizedImage
               src="/optimized/hero-image.webp"
               alt="Quezelle Torres"
-              width={1000}
-              height={1000}
-              className="w-full max-w-[800px] h-auto mx-auto"
+              width={800}
+              height={800}
+              className="w-full max-w-[800px] h-auto mx-auto rounded-2xl shadow-lg"
+              sizes="(max-width: 768px) 100vw, 800px"
+              loading="eager"
+              priority={true}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
