@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const services = [
@@ -82,47 +81,20 @@ const services = [
 const Services = () => {
   const [, setHoveredIndex] = useState<number | null>(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
     <section
       id="services"
       className="relative min-h-screen py-20 flex items-center"
     >
       {/* Content Container */}
-      <motion.div 
+      <div 
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
-            <motion.div 
+            <div 
               className="text-center mb-16"
-              variants={itemVariants}
             >
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 hover:text-gray-900 transition-colors duration-300 mb-4">
                 Services I Offer
@@ -130,14 +102,13 @@ const Services = () => {
               <p className="text-lg text-gray-600/90 hover:text-gray-700 transition-colors duration-300 max-w-2xl mx-auto">
                 Specialized administrative support ensuring efficient healthcare operations and exceptional patient care
               </p>
-            </motion.div>
+            </div>
 
             {/* Services Grid */}
             <div className="space-y-6">
               {services.map((service, index) => (
-                <motion.div
+                <div
                   key={service.number}
-                  variants={itemVariants}
                   className="group"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
@@ -172,12 +143,12 @@ const Services = () => {
                     {/* Hover Gradient Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white via-theme-light-bg-secondary to-theme-light-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

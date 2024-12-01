@@ -47,9 +47,9 @@ export default {
         },
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'float-slow': 'float 8s ease-in-out infinite',
-        'float-slower': 'float 10s ease-in-out infinite',
+        'float-fast': 'float 0.5s ease-in-out infinite',
+        'float-faster': 'float 0.75s ease-in-out infinite',
+        'float-fastest': 'float 1s ease-in-out infinite',
       },
     },
   },

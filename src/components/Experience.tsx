@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 const experiences = [
   {
     id: 1,
@@ -70,30 +68,20 @@ const Experience = () => {
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 mb-4">
               Professional Experience
             </h2>
             <p className="text-lg text-gray-600/90 max-w-2xl mx-auto">
               A timeline of my healthcare administration journey
             </p>
-          </motion.div>
+          </div>
 
           {/* Experience Cards */}
           <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <motion.div
+              <div
                 key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group relative"
               >
                 <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -114,23 +102,16 @@ const Experience = () => {
                       {/* Responsibilities */}
                       <ul className="space-y-3">
                         {exp.responsibilities.map((responsibility, i) => (
-                          <motion.li
-                            key={i}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 * i }}
-                            className="flex items-start space-x-3"
-                          >
+                          <li key={i} className="flex items-start space-x-3">
                             <div className={`flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-gradient-to-r ${exp.color}`} />
                             <span className="text-gray-600">{responsibility}</span>
-                          </motion.li>
+                          </li>
                         ))}
                       </ul>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
