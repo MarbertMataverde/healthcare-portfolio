@@ -82,6 +82,32 @@
 
 @layer components {
   /* Custom Components */
+  .section-separator {
+    @apply w-full py-16 relative flex items-center justify-center;
+  }
+
+  .section-separator::before {
+    content: '';
+    @apply absolute w-[95%] sm:w-[90%] md:w-[85%] max-w-5xl h-[2px];
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 135, 115, 0.1) 15%,
+      rgba(255, 135, 115, 0.3) 30%,
+      rgba(255, 135, 115, 0.5) 50%,
+      rgba(255, 135, 115, 0.3) 70%,
+      rgba(255, 135, 115, 0.1) 85%,
+      transparent 100%
+    );
+  }
+
+  .section-separator::after {
+    content: '';
+    @apply absolute w-3 h-3 rounded-full bg-gradient-to-br from-coral-400/60 to-coral-500/60;
+    box-shadow: 
+      0 0 10px rgba(255, 135, 115, 0.3),
+      0 0 20px rgba(255, 135, 115, 0.2);
+  }
+
   .hover-card {
     @apply bg-theme-light-bg/70 backdrop-blur-lg rounded-2xl shadow-lg;
   }

@@ -75,74 +75,71 @@ const services = [
 
 const Services = memo(() => {
   return (
-    <section
-      id="services"
-      className="relative min-h-screen py-16 lg:py-20 flex items-center bg-gradient-to-br from-gray-50 to-white"
-    >
-      {/* Modern grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.8)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.8)_0.5px,transparent_0.5px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black_60%)]"></div>
+    <>
+      <div className="section-separator" aria-hidden="true" />
+      <section id="services" className="relative py-16 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 lg:mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 mb-4">
+                Services I Offer
+              </h2>
+              <p className="text-lg text-gray-600/90 max-w-2xl mx-auto">
+                Specialized administrative support ensuring efficient healthcare operations and exceptional patient care
+              </p>
+            </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 mb-4">
-              Services I Offer
-            </h2>
-            <p className="text-lg text-gray-600/90 max-w-2xl mx-auto">
-              Specialized administrative support ensuring efficient healthcare operations and exceptional patient care
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="space-y-4 sm:space-y-6">
-            {services.map((service) => (
-              <div
-                key={service.number}
-                className="group transform transition-all duration-300 hover:translate-y-[-2px]"
-              >
-                <div className="relative bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  {/* Gradient accent */}
-                  <div className="absolute top-0 left-0 w-1.5 h-full rounded-l-2xl bg-gradient-to-b from-coral-500 to-purple-500" />
-                  
-                  <div className="p-6 sm:p-8">
-                    <div className="flex flex-col sm:flex-row gap-6">
-                      {/* Service number and icon */}
-                      <div className="flex sm:flex-col items-center sm:items-start gap-4">
-                        <span className="text-3xl sm:text-4xl font-serif text-coral-500 font-semibold">
-                          {service.number}
-                        </span>
-                        <div className="p-2.5 rounded-xl bg-coral-50 text-coral-500">
-                          {service.icon}
+            {/* Services Grid */}
+            <div className="space-y-4 sm:space-y-6">
+              {services.map((service) => (
+                <div
+                  key={service.number}
+                  className="group transform transition-all duration-300 hover:translate-y-[-2px]"
+                >
+                  <div className="relative bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    {/* Gradient accent */}
+                    <div className="absolute top-0 left-0 w-1.5 h-full rounded-l-2xl bg-gradient-to-b from-coral-500 to-purple-500" />
+                    
+                    <div className="p-6 sm:p-8">
+                      <div className="flex flex-col sm:flex-row gap-6">
+                        {/* Service number and icon */}
+                        <div className="flex sm:flex-col items-center sm:items-start gap-4">
+                          <span className="text-3xl sm:text-4xl font-serif text-coral-500 font-semibold">
+                            {service.number}
+                          </span>
+                          <div className="p-2.5 rounded-xl bg-coral-50 text-coral-500">
+                            {service.icon}
+                          </div>
                         </div>
-                      </div>
 
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-800/90 mb-3">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-600/90 leading-relaxed mb-4">
-                          {service.description}
-                        </p>
-                        <ul className="space-y-2">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-gray-600/90">
-                              <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-coral-500 to-purple-500" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {/* Content */}
+                        <div className="flex-1">
+                          <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-800/90 mb-3">
+                            {service.title}
+                          </h3>
+                          <p className="text-gray-600/90 leading-relaxed mb-4">
+                            {service.description}
+                          </p>
+                          <ul className="space-y-2">
+                            {service.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-center gap-2 text-gray-600/90">
+                                <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-coral-500 to-purple-500" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 });
 
