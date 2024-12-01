@@ -62,16 +62,16 @@ const Experience = () => {
       <div className="section-separator" aria-hidden="true" />
       <section
         id="experience"
-        className="relative py-16 lg:py-24 flex items-center"
+        className="relative min-h-screen py-16 lg:py-24 flex flex-col"
       >
         {/* Modern gradient background */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.8)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.8)_0.5px,transparent_0.5px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black_60%)]"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 flex-1 flex flex-col">
+          <div className="max-w-5xl mx-auto w-full">
             {/* Section Header */}
             <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 mb-4">
@@ -83,7 +83,7 @@ const Experience = () => {
             </div>
 
             {/* Experience Timeline */}
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-4 overflow-y-auto">
               {experiences.map((experience) => (
                 <div
                   key={experience.id}
