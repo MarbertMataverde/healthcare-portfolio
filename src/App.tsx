@@ -25,21 +25,31 @@ function App() {
       
       <Navbar />
       
-      <main>
+      <main className="relative pt-20">
         <Hero />
-        <Suspense fallback={<div className="min-h-screen" />}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-coral-500 border-t-transparent rounded-full animate-spin" />
+        </div>}>
           <About />
         </Suspense>
-        <Suspense fallback={<div className="min-h-screen" />}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-coral-500 border-t-transparent rounded-full animate-spin" />
+        </div>}>
           <Experience />
         </Suspense>
-        <Suspense fallback={<div className="min-h-screen" />}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-coral-500 border-t-transparent rounded-full animate-spin" />
+        </div>}>
           <Services />
         </Suspense>
-        <Suspense fallback={<div className="min-h-screen" />}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-coral-500 border-t-transparent rounded-full animate-spin" />
+        </div>}>
           <Tools />
         </Suspense>
-        <Suspense fallback={<div className="min-h-screen" />}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-coral-500 border-t-transparent rounded-full animate-spin" />
+        </div>}>
           <Contact />
         </Suspense>
       </main>

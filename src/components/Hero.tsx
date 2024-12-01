@@ -39,26 +39,69 @@ const Hero = memo(() => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
         >
-          <path
+          <motion.path
             d="M0 600Q360 550 720 600T1440 550"
             stroke="url(#flow-gradient-1)"
-            strokeWidth="2"
+            strokeWidth="4"
+            strokeLinecap="round"
             fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: 1, 
+              opacity: 1,
+              d: [
+                "M0 600Q360 550 720 600T1440 550",
+                "M0 580Q360 630 720 580T1440 630",
+                "M0 600Q360 550 720 600T1440 550"
+              ]
+            }}
+            transition={{
+              pathLength: { duration: 2, ease: "easeInOut" },
+              opacity: { duration: 0.5 },
+              d: {
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
           />
-          <path
+          <motion.path
             d="M0 700Q360 650 720 700T1440 650"
             stroke="url(#flow-gradient-2)"
-            strokeWidth="2"
+            strokeWidth="4"
+            strokeLinecap="round"
             fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: 1, 
+              opacity: 1,
+              d: [
+                "M0 700Q360 650 720 700T1440 650",
+                "M0 680Q360 730 720 680T1440 730",
+                "M0 700Q360 650 720 700T1440 650"
+              ]
+            }}
+            transition={{
+              pathLength: { duration: 2, ease: "easeInOut" },
+              opacity: { duration: 0.5 },
+              d: {
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }
+            }}
           />
           <defs>
-            <linearGradient id="flow-gradient-1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.3" />
+            <linearGradient id="flow-gradient-1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.7" />
+              <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.7" />
             </linearGradient>
-            <linearGradient id="flow-gradient-2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0.2" />
+            <linearGradient id="flow-gradient-2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.6" />
+              <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0.6" />
             </linearGradient>
           </defs>
         </svg>
@@ -67,8 +110,8 @@ const Hero = memo(() => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Text Content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          {/* Text Content - Full width on small screens */}
+          <div className="text-center lg:text-left order-2 lg:order-1 col-span-1 lg:col-span-1">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,20 +167,20 @@ const Hero = memo(() => {
             </motion.div>
           </div>
 
-          {/* Image */}
+          {/* Image - Hidden on small screens */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 hidden lg:block"
           >
             <OptimizedImage
               src="/optimized/hero-image.webp"
               alt="Quezelle Torres"
               width={800}
               height={800}
-              className="w-full max-w-[800px] h-auto mx-auto rounded-2xl shadow-lg"
-              sizes="(max-width: 768px) 100vw, 800px"
+              className="w-full max-w-[800px] h-auto mx-auto"
+              sizes="800px"
               loading="eager"
               priority={true}
             />
