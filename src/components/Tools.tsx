@@ -1,11 +1,8 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { FaPhone, FaFax, FaNotesMedical, FaCheckCircle, FaComments } from 'react-icons/fa';
-import { useState } from 'react';
 
 interface Tool {
   name: string;
-  description: string;
-  link?: string;
   icon: JSX.Element;
   features?: string[];
 }
@@ -27,7 +24,6 @@ const toolCategories: ToolCategory[] = [
     tools: [
       { 
         name: "VoIP", 
-        description: "Voice over Internet Protocol for reliable communication", 
         icon: <FaPhone className="w-6 h-6" />,
         features: [
           "Reliable communication",
@@ -37,7 +33,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Ring Central", 
-        description: "Cloud-based communications platform", 
         icon: <FaPhone className="w-6 h-6" />,
         features: [
           "Cloud-based",
@@ -47,7 +42,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "One Talk", 
-        description: "Verizon's integrated business communication solution", 
         icon: <FaPhone className="w-6 h-6" />,
         features: [
           "Integrated",
@@ -57,7 +51,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Vonage", 
-        description: "Cloud communications for seamless connectivity", 
         icon: <FaPhone className="w-6 h-6" />,
         features: [
           "Cloud-based",
@@ -75,7 +68,6 @@ const toolCategories: ToolCategory[] = [
     tools: [
       { 
         name: "DocuSign", 
-        description: "Electronic signature and document management", 
         icon: <FaFax className="w-6 h-6" />,
         features: [
           "Electronic signature",
@@ -85,7 +77,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "SRFax", 
-        description: "Secure cloud-based faxing solution", 
         icon: <FaFax className="w-6 h-6" />,
         features: [
           "Secure",
@@ -95,7 +86,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Foxit", 
-        description: "PDF document management and editing", 
         icon: <FaFax className="w-6 h-6" />,
         features: [
           "PDF management",
@@ -113,7 +103,6 @@ const toolCategories: ToolCategory[] = [
     tools: [
       { 
         name: "Wellsky", 
-        description: "Comprehensive healthcare software solutions", 
         icon: <FaNotesMedical className="w-6 h-6" />,
         features: [
           "Comprehensive",
@@ -123,7 +112,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Forcura", 
-        description: "Healthcare workflow and documentation platform", 
         icon: <FaNotesMedical className="w-6 h-6" />,
         features: [
           "Healthcare workflow",
@@ -133,7 +121,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Data Soft Logic", 
-        description: "Integrated healthcare management system", 
         icon: <FaNotesMedical className="w-6 h-6" />,
         features: [
           "Integrated",
@@ -151,7 +138,6 @@ const toolCategories: ToolCategory[] = [
     tools: [
       { 
         name: "Inovalon", 
-        description: "Healthcare data analytics platform", 
         icon: <FaCheckCircle className="w-6 h-6" />,
         features: [
           "Healthcare data analytics",
@@ -161,7 +147,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Health Trio Connect", 
-        description: "Healthcare eligibility verification system", 
         icon: <FaCheckCircle className="w-6 h-6" />,
         features: [
           "Healthcare eligibility",
@@ -171,7 +156,6 @@ const toolCategories: ToolCategory[] = [
       },
       { 
         name: "Medi-Cal Providers", 
-        description: "California Medicaid program portal", 
         icon: <FaCheckCircle className="w-6 h-6" />,
         features: [
           "California Medicaid",
@@ -189,7 +173,6 @@ const toolCategories: ToolCategory[] = [
     tools: [
       { 
         name: "Google Workspace", 
-        description: "Integrated suite including Docs, Sheets, Chat, and Meet", 
         icon: <FaComments className="w-6 h-6" />,
         features: [
           "Integrated suite",
@@ -202,74 +185,84 @@ const toolCategories: ToolCategory[] = [
 ];
 
 const Tools = memo(() => {
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const firstThreeCategories = useMemo(() => toolCategories.slice(0, 3), []);
+  const lastTwoCategories = useMemo(() => toolCategories.slice(3), []);
 
-  return (
-    <section id="tools" className="relative py-20 bg-[linear-gradient(rgba(255,255,255,.9)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.9)_0.5px,transparent_0.5px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.05)_70%,rgba(255,255,255,0.1)_100%)]"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold font-display mb-4">
-              <span className="bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
-                Tools & Technologies
-              </span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Leveraging modern healthcare technology for efficient administration and seamless patient care.
-            </p>
+  const renderToolItem = (tool: Tool, category: ToolCategory) => (
+    <div key={tool.name} className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50">
+      <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
+      <span className="text-base text-gray-600">
+        {tool.name}
+      </span>
+    </div>
+  );
+
+  const renderCategory = (category: ToolCategory, index?: number) => (
+    <div
+      key={category.id}
+      className={`group relative flex ${
+        index === 2 ? 'sm:col-span-2 lg:col-span-1 sm:max-w-lg sm:mx-auto lg:max-w-none lg:mx-0' : ''
+      }`}
+    >
+      <div className="flex-1 bg-white rounded-xl shadow-lg border border-gray-100">
+        <div className={`h-0.5 rounded-t-xl bg-gradient-to-r ${category.color}`} />
+        
+        <div className="p-5">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg relative overflow-hidden`}>
+              <div className="absolute inset-0 bg-gradient-to-bl from-black/10 via-transparent to-transparent" />
+              <div className="relative text-lg">
+                {category.icon}
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-serif font-bold text-gray-800">
+                {category.title}
+              </h3>
+              <p className="text-sm text-gray-500">
+                {category.tools.length} tools
+              </p>
+            </div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {toolCategories.map((category) => (
-              <div key={category.id} className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-coral-500 to-purple-500 rounded-[2rem] blur-2xl opacity-30" />
-                <div className="relative bg-white/80 backdrop-blur-sm rounded-[2rem] p-8 border border-gray-100/20 shadow-xl">
-                  <div 
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg mb-6`}
-                  >
-                    {category.icon}
-                  </div>
+          <div className="space-y-2">
+            {category.tools.map(tool => renderToolItem(tool, category))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">{category.title}</h3>
+  return (
+    <section id="tools" className="relative min-h-screen py-20 flex items-center">
+      <div className="relative z-10 w-full">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-3">
+                Tools That I Use
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Leveraging modern healthcare tools for efficient patient care
+              </p>
+            </div>
 
-                  <div className="space-y-4">
-                    {category.tools.map((tool) => (
-                      <div 
-                        key={tool.name}
-                        className="p-4 rounded-xl bg-white/50 hover:bg-white/80 transition-colors duration-200"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-md`}>
-                            {tool.icon}
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-gray-800">{tool.name}</h4>
-                            <p className="text-sm text-gray-600 mt-1">{tool.description}</p>
-                            {tool.features && (
-                              <ul className="mt-2 space-y-1">
-                                {tool.features.map((feature, index) => (
-                                  <li key={index} className="flex items-center text-sm text-gray-600">
-                                    <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color} mr-2`} />
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            <div className="flex flex-col items-center">
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
+                {firstThreeCategories.map((category, index) => renderCategory(category, index))}
               </div>
-            ))}
+
+              <div className="w-full sm:max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                {lastTwoCategories.map(category => renderCategory(category))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 });
+
+Tools.displayName = 'Tools';
 
 export default Tools;

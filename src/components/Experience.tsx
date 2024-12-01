@@ -60,15 +60,18 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative min-h-screen py-20 flex items-center"
+      className="relative min-h-screen py-16 lg:py-20 flex items-center"
     >
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.9)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.9)_0.5px,transparent_0.5px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)]"></div>
+      {/* Modern gradient background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.8)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.8)_0.5px,transparent_0.5px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black_60%)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50"></div>
+      </div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 mb-4">
               Professional Experience
             </h2>
@@ -77,34 +80,35 @@ const Experience = () => {
             </p>
           </div>
 
-          {/* Experience Cards */}
-          <div className="space-y-6">
+          {/* Experience Timeline */}
+          <div className="space-y-4 sm:space-y-6">
             {experiences.map((experience) => (
               <div
                 key={experience.id}
-                className="group relative"
+                className="transform transition-all duration-300 hover:translate-y-[-2px]"
               >
-                <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                  {/* Gradient Border */}
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${experience.color}`} />
+                <div className="relative bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+                  {/* Gradient accent */}
+                  <div className={`absolute top-0 left-0 w-1.5 h-full rounded-l-2xl bg-gradient-to-b ${experience.color}`} />
                   
-                  <div className="p-6 md:p-8">
+                  <div className="p-6 sm:p-8">
                     <div className="flex flex-col gap-4">
+                      {/* Header */}
                       <div>
-                        <h3 className="text-xl md:text-2xl font-serif font-bold text-gray-800/90 mb-2">
+                        <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-800/90 mb-2">
                           {experience.title}
                         </h3>
-                        <span className="text-base text-gray-600">
+                        <span className="inline-block px-3 py-1 rounded-lg bg-gray-100 text-gray-600 text-sm">
                           {experience.period}
                         </span>
                       </div>
                       
                       {/* Responsibilities */}
-                      <ul className="space-y-3">
+                      <ul className="space-y-2.5">
                         {experience.responsibilities.map((responsibility, i) => (
-                          <li key={i} className="flex items-start space-x-3">
+                          <li key={i} className="flex items-start gap-3">
                             <div className={`flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-gradient-to-r ${experience.color}`} />
-                            <span className="text-gray-600">{responsibility}</span>
+                            <span className="text-gray-600/90 leading-relaxed">{responsibility}</span>
                           </li>
                         ))}
                       </ul>
