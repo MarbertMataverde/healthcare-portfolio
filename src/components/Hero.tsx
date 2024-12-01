@@ -33,14 +33,14 @@ const Hero = memo(() => {
         
         {/* Optimized flowing lines */}
         <svg
-          className="absolute inset-0 w-full h-full opacity-50"
+          className="absolute inset-0 w-full h-full opacity-50 transform scale-125 md:scale-110 lg:scale-100 lg:-translate-y-24 origin-center"
           viewBox="0 0 1440 800"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
+          preserveAspectRatio="xMidYMid slice"
         >
           <motion.path
-            d="M0 600Q360 550 720 600T1440 550"
+            d="M0 500Q360 450 720 500T1440 450"
             stroke="url(#flow-gradient-1)"
             strokeWidth="4"
             strokeLinecap="round"
@@ -50,9 +50,9 @@ const Hero = memo(() => {
               pathLength: 1, 
               opacity: 1,
               d: [
-                "M0 600Q360 550 720 600T1440 550",
-                "M0 580Q360 630 720 580T1440 630",
-                "M0 600Q360 550 720 600T1440 550"
+                "M0 500Q360 450 720 500T1440 450",
+                "M0 480Q360 530 720 480T1440 530",
+                "M0 500Q360 450 720 500T1440 450"
               ]
             }}
             transition={{
@@ -66,7 +66,7 @@ const Hero = memo(() => {
             }}
           />
           <motion.path
-            d="M0 700Q360 650 720 700T1440 650"
+            d="M0 600Q360 550 720 600T1440 550"
             stroke="url(#flow-gradient-2)"
             strokeWidth="4"
             strokeLinecap="round"
@@ -76,9 +76,9 @@ const Hero = memo(() => {
               pathLength: 1, 
               opacity: 1,
               d: [
-                "M0 700Q360 650 720 700T1440 650",
-                "M0 680Q360 730 720 680T1440 730",
-                "M0 700Q360 650 720 700T1440 650"
+                "M0 600Q360 550 720 600T1440 550",
+                "M0 580Q360 630 720 580T1440 630",
+                "M0 600Q360 550 720 600T1440 550"
               ]
             }}
             transition={{
