@@ -79,31 +79,31 @@ const Experience = () => {
 
           {/* Experience Cards */}
           <div className="space-y-6">
-            {experiences.map((exp, index) => (
+            {experiences.map((experience) => (
               <div
-                key={exp.id}
+                key={experience.id}
                 className="group relative"
               >
                 <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                   {/* Gradient Border */}
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${exp.color}`} />
+                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${experience.color}`} />
                   
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col gap-4">
                       <div>
                         <h3 className="text-xl md:text-2xl font-serif font-bold text-gray-800/90 mb-2">
-                          {exp.title}
+                          {experience.title}
                         </h3>
                         <span className="text-base text-gray-600">
-                          {exp.period}
+                          {experience.period}
                         </span>
                       </div>
                       
                       {/* Responsibilities */}
                       <ul className="space-y-3">
-                        {exp.responsibilities.map((responsibility, i) => (
+                        {experience.responsibilities.map((responsibility, i) => (
                           <li key={i} className="flex items-start space-x-3">
-                            <div className={`flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-gradient-to-r ${exp.color}`} />
+                            <div className={`flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-gradient-to-r ${experience.color}`} />
                             <span className="text-gray-600">{responsibility}</span>
                           </li>
                         ))}

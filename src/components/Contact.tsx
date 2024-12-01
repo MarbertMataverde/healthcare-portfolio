@@ -3,66 +3,6 @@ import { FaLinkedin, FaInstagram, FaEnvelope, FaCopy, FaCheck } from 'react-icon
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../config/emailjs';
 
-const styles = {
-  bgGridPattern: `
-    .bg-grid-pattern {
-      background-image: linear-gradient(to right, #000 1px, transparent 1px),
-                       linear-gradient(to bottom, #000 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    @keyframes sphere-float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(20px, -20px) rotate(5deg); }
-      50% { transform: translate(0, -40px) rotate(0deg); }
-      75% { transform: translate(-20px, -20px) rotate(-5deg); }
-    }
-
-    @keyframes sphere-float-delayed {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(-20px, 20px) rotate(-5deg); }
-      50% { transform: translate(0, 40px) rotate(0deg); }
-      75% { transform: translate(20px, 20px) rotate(5deg); }
-    }
-
-    @keyframes grid-shift {
-      0%, 100% { transform: translateX(0) translateY(0); }
-      50% { transform: translateX(30px) translateY(30px); }
-    }
-
-    .animate-sphere-float {
-      animation: sphere-float 20s ease-in-out infinite;
-    }
-
-    .animate-sphere-float-delayed {
-      animation: sphere-float-delayed 25s ease-in-out infinite;
-    }
-
-    .animate-grid-shift {
-      animation: grid-shift 30s ease-in-out infinite;
-    }
-
-    .animate-pulse-slow {
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .animate-pulse-slow-delayed {
-      animation: pulse 4s ease-in-out infinite;
-      animation-delay: 2s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .animate-sphere-float,
-      .animate-sphere-float-delayed,
-      .animate-grid-shift,
-      .animate-pulse-slow,
-      .animate-pulse-slow-delayed {
-        animation: none;
-      }
-    }
-  `,
-};
-
 const Contact = memo(() => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -81,11 +21,10 @@ const Contact = memo(() => {
     try {
       const templateParams = {
         from_name: formData.name,
-        reply_to: formData.email,
         message: formData.message,
-        to_name: 'Quezelle',  // Your name
-        user_name: formData.name,  // Sender's name
-        user_email: formData.email,  // Sender's email
+        reply_to: formData.email,
+        to_name: "Quezelle",
+        user_email: formData.email,
       };
 
       emailjs.send(
@@ -93,12 +32,13 @@ const Contact = memo(() => {
         emailConfig.templateId,
         templateParams,
         emailConfig.publicKey
-      );
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      ).then(() => {
+        setSubmitStatus('success');
+      }).catch(() => {
+        setSubmitStatus('error');
+      });
     } catch (error) {
       setSubmitStatus('error');
-      console.error('Failed to send email:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -147,18 +87,16 @@ const Contact = memo(() => {
                 <div className="relative bg-white/80 backdrop-blur-sm rounded-[2rem] p-8 border border-gray-100/20 shadow-xl">
                   <h3 className="text-2xl font-bold mb-6">
                     <span className="bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
-                      Get in Touch
+                      Contact Information
                     </span>
                   </h3>
                   
                   <div className="group relative mb-8">
                     <button
                       onClick={handleCopyEmail}
-                      className="w-full flex items-center p-4 rounded-xl hover:bg-gray-50/80 transition-all duration-300"
+                      className="w-full flex items-center p-4 rounded-xl bg-white/50 hover:bg-white/80 transition-colors duration-200"
                     >
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-coral-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
-                        <FaEnvelope className="w-5 h-5" />
-                      </div>
+                      <FaEnvelope className="w-6 h-6 text-coral-500" />
                       <div className="ml-4 text-left">
                         <p className="text-sm text-gray-500">Email</p>
                         <p className="text-gray-700 font-medium">Quezelle.torres@outlook.com</p>
@@ -167,7 +105,7 @@ const Contact = memo(() => {
                         {isCopied ? (
                           <FaCheck className="w-5 h-5 text-green-500" />
                         ) : (
-                          <FaCopy className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
+                          <FaCopy className="w-5 h-5 text-gray-400" />
                         )}
                       </div>
                     </button>
@@ -176,7 +114,7 @@ const Contact = memo(() => {
                   <div className="space-y-4">
                     <h4 className="text-lg font-medium text-gray-700 mb-4">Connect with Me</h4>
                     
-                    <div className="flex items-center justify-start gap-4">
+                    <div className="flex gap-4">
                       <a
                         href="https://linkedin.com"
                         target="_blank"
@@ -185,7 +123,7 @@ const Contact = memo(() => {
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-[#0A66C2] to-[#0077B5] rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
                         <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-[#0A66C2] to-[#0077B5] flex items-center justify-center text-white shadow-lg">
-                          <FaLinkedin className="w-5 h-5" />
+                          <FaLinkedin className="w-6 h-6" />
                         </div>
                       </a>
 
@@ -197,7 +135,7 @@ const Contact = memo(() => {
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
                         <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg">
-                          <FaInstagram className="w-5 h-5" />
+                          <FaInstagram className="w-6 h-6" />
                         </div>
                       </a>
                     </div>
@@ -211,7 +149,7 @@ const Contact = memo(() => {
               <div className="relative bg-white/80 backdrop-blur-sm rounded-[2rem] p-8 border border-gray-100/20 shadow-xl">
                 <h3 className="text-2xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
-                    Send a Message
+                    Send Me a Message
                   </span>
                 </h3>
                 
@@ -226,9 +164,8 @@ const Contact = memo(() => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/50 border border-gray-200 focus:border-coral-500 focus:ring-2 focus:ring-coral-200 transition-all duration-200"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-coral-500/20 focus:border-coral-500 transition-colors duration-300 bg-white/50"
-                      placeholder="John Doe"
                     />
                   </div>
 
@@ -242,9 +179,8 @@ const Contact = memo(() => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/50 border border-gray-200 focus:border-coral-500 focus:ring-2 focus:ring-coral-200 transition-all duration-200"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-coral-500/20 focus:border-coral-500 transition-colors duration-300 bg-white/50"
-                      placeholder="john@example.com"
                     />
                   </div>
 
@@ -257,10 +193,9 @@ const Contact = memo(() => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      required
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-coral-500/20 focus:border-coral-500 transition-colors duration-300 bg-white/50 resize-none"
-                      placeholder="Tell me about your project..."
+                      className="w-full px-4 py-3 rounded-xl bg-white/50 border border-gray-200 focus:border-coral-500 focus:ring-2 focus:ring-coral-200 transition-all duration-200 resize-none"
+                      required
                     />
                   </div>
 
@@ -271,10 +206,8 @@ const Contact = memo(() => {
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-coral-500 to-purple-500 rounded-xl blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className={`relative w-full py-4 px-6 rounded-xl font-medium shadow-lg
-                      ${isSubmitting 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-gradient-to-r from-coral-500 to-purple-500 hover:from-coral-600 hover:to-purple-600'
-                      } text-white transition-all duration-300`}
+                      ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-coral-500 to-purple-500'}
+                      text-white transition-all duration-200`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center">
@@ -311,7 +244,5 @@ const Contact = memo(() => {
     </section>
   );
 });
-
-Contact.displayName = 'Contact';
 
 export default Contact;
