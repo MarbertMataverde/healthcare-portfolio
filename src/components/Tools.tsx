@@ -1,8 +1,6 @@
 import { memo } from 'react';
-import { motion } from 'framer-motion';
 import { FaPhone, FaFax, FaNotesMedical, FaCheckCircle, FaComments } from 'react-icons/fa';
 import { useState } from 'react';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface Tool {
   name: string;
@@ -198,241 +196,80 @@ const toolCategories: ToolCategory[] = [
           "Docs, Sheets, Chat, and Meet",
           "Scalable"
         ]
-      },
-      { 
-        name: "Microsoft Outlook", 
-        description: "Email and calendar management", 
-        icon: <FaComments className="w-6 h-6" />,
-        features: [
-          "Email management",
-          "Calendar management",
-          "Scalable"
-        ]
-      },
-      { 
-        name: "Microsoft Teams", 
-        description: "Collaborative communication platform", 
-        icon: <FaComments className="w-6 h-6" />,
-        features: [
-          "Collaborative communication",
-          "Platform",
-          "Scalable"
-        ]
-      },
-      { 
-        name: "Zoom", 
-        description: "Video conferencing and virtual meetings", 
-        icon: <FaComments className="w-6 h-6" />,
-        features: [
-          "Video conferencing",
-          "Virtual meetings",
-          "Scalable"
-        ]
       }
     ]
   }
 ];
 
 const Tools = memo(() => {
-  const [hoveredTool, setHoveredTool] = useState<string | null>(null);
-  const { elementRef, isVisible } = useIntersectionObserver({
-    threshold: 0.1,
-    rootMargin: '50px'
-  });
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
   return (
-    <section
-      id="tools"
-      ref={elementRef}
-      className="relative min-h-screen py-20 flex items-center"
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isVisible ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full"
-      >
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800/90 hover:text-gray-900 transition-colors duration-300 mb-3">
-                Tools That I Use
-              </h2>
-              <p className="text-lg text-gray-600/90 hover:text-gray-700 transition-colors duration-300 max-w-2xl mx-auto">
-                Leveraging modern healthcare tools for efficient patient care
-              </p>
-            </motion.div>
+    <section id="tools" className="relative py-20 bg-[linear-gradient(rgba(255,255,255,.9)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(255,255,255,.9)_0.5px,transparent_0.5px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.05)_70%,rgba(255,255,255,0.1)_100%)]"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold font-display mb-4">
+              <span className="bg-gradient-to-r from-coral-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
+                Tools & Technologies
+              </span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Leveraging modern healthcare technology for efficient administration and seamless patient care.
+            </p>
+          </div>
 
-            <div className="flex flex-col items-center">
-              {/* First Row - 3 cards */}
-              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
-                {toolCategories.slice(0, 3).map((category, index) => (
-                  <motion.div
-                    key={category.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`group relative flex ${
-                      index === 2 ? 'sm:col-span-2 lg:col-span-1 sm:max-w-lg sm:mx-auto lg:max-w-none lg:mx-0' : ''
-                    }`}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {toolCategories.map((category) => (
+              <div key={category.id} className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-coral-500 to-purple-500 rounded-[2rem] blur-2xl opacity-30" />
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-[2rem] p-8 border border-gray-100/20 shadow-xl">
+                  <div 
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg mb-6`}
                   >
-                    <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
-                      <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                      
-                      <div className="p-5">
-                        <div className="flex items-center space-x-3 mb-4">
-                          <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg relative overflow-hidden group-hover:shadow-xl transition-all duration-300`}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute inset-0 bg-gradient-to-bl from-black/10 via-transparent to-transparent" />
-                            <div className="relative text-lg transform group-hover:-translate-y-0.5 transition-transform duration-300">
-                              {category.icon}
-                            </div>
-                          </motion.div>
-                          <div className="flex-1">
-                            <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
-                              {category.title}
-                            </h3>
-                            <p className="text-sm text-gray-500/90 group-hover:text-gray-600 transition-colors duration-300">
-                              {category.tools.length} tools
-                            </p>
+                    {category.icon}
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">{category.title}</h3>
+
+                  <div className="space-y-4">
+                    {category.tools.map((tool) => (
+                      <div 
+                        key={tool.name}
+                        className="p-4 rounded-xl bg-white/50 hover:bg-white/80 transition-colors duration-200"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-md`}>
+                            {tool.icon}
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-800">{tool.name}</h4>
+                            <p className="text-sm text-gray-600 mt-1">{tool.description}</p>
+                            {tool.features && (
+                              <ul className="mt-2 space-y-1">
+                                {tool.features.map((feature, index) => (
+                                  <li key={index} className="flex items-center text-sm text-gray-600">
+                                    <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color} mr-2`} />
+                                    {feature}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                           </div>
                         </div>
-
-                        <div className="space-y-2">
-                          {category.tools.map((tool) => (
-                            <motion.div
-                              key={tool.name}
-                              onHoverStart={() => setHoveredTool(tool.name)}
-                              onHoverEnd={() => setHoveredTool(null)}
-                              className="relative"
-                            >
-                              <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
-                                <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
-                                <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                  {tool.name}
-                                </span>
-                              </div>
-
-                              {hoveredTool === tool.name && (
-                                <motion.div
-                                  initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                                  exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
-                                >
-                                  <div className="relative">
-                                    <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
-                                    <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                      {tool.description}
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              )}
-                            </motion.div>
-                          ))}
-                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    ))}
+                  </div>
+                </div>
               </div>
-
-              {/* Second Row - 2 cards */}
-              <div className="w-full sm:max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                {toolCategories.slice(3).map((category, index) => (
-                  <motion.div
-                    key={category.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
-                    className="group relative flex"
-                  >
-                    <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100/50">
-                      <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                      
-                      <div className="p-5">
-                        <div className="flex items-center space-x-3 mb-4">
-                          <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg relative overflow-hidden group-hover:shadow-xl transition-all duration-300`}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute inset-0 bg-gradient-to-bl from-black/10 via-transparent to-transparent" />
-                            <div className="relative text-lg transform group-hover:-translate-y-0.5 transition-transform duration-300">
-                              {category.icon}
-                            </div>
-                          </motion.div>
-                          <div className="flex-1">
-                            <h3 className="text-lg font-serif font-bold text-gray-800/95 group-hover:text-gray-900 transition-colors duration-300">
-                              {category.title}
-                            </h3>
-                            <p className="text-sm text-gray-500/90 group-hover:text-gray-600 transition-colors duration-300">
-                              {category.tools.length} tools
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          {category.tools.map((tool) => (
-                            <motion.div
-                              key={tool.name}
-                              onHoverStart={() => setHoveredTool(tool.name)}
-                              onHoverEnd={() => setHoveredTool(null)}
-                              className="relative"
-                            >
-                              <div className="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg hover:bg-gray-50/80 transition-all duration-200">
-                                <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.color}`} />
-                                <span className="text-base text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                  {tool.name}
-                                </span>
-                              </div>
-
-                              {hoveredTool === tool.name && (
-                                <motion.div
-                                  initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                                  exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="absolute z-10 left-0 right-0 mt-2 p-3 bg-white/95 rounded-xl shadow-lg border border-gray-100/50 backdrop-blur-sm"
-                                >
-                                  <div className="relative">
-                                    <div className="absolute -top-[9px] left-4 w-3 h-3 bg-white/95 border-t border-l border-gray-100/50 transform rotate-45" />
-                                    <div className="text-sm text-gray-600/90 group-hover:text-gray-700 transition-colors duration-300">
-                                      {tool.description}
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              )}
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 });
-
-Tools.displayName = 'Tools';
 
 export default Tools;
